@@ -1,0 +1,200 @@
+MAIN JAVA
+
+package com.example.calculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1, e2;
+    TextView res;
+    int num1, num2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    // a public method to get the input numbers
+    public boolean getNumbers()
+    {
+        // defining the edit text 1 to e1
+        e1 = (EditText)findViewById(R.id.first);
+
+        // defining the edit text 2 to e2
+        e2 = (EditText)findViewById(R.id.second);
+
+        // defining the text view to t1
+        res = (TextView)findViewById(R.id.result);
+
+        // taking input from text box 1
+        String s1 = e1.getText().toString();
+        // taking input from text box 2
+        String s2 = e2.getText().toString();
+
+        // condition to check if box is not empty
+        if ((s1.equals(null) && s2.equals(null))
+                || (s1.equals("") && s2.equals(""))) {
+
+            String result = "Please enter a value";
+            res.setText(result);
+
+            return false;
+        }
+        else {
+            // converting string to int.
+            num1 = Integer.parseInt(e1.getText().toString());
+
+            // converting string to int.
+            num2 = Integer.parseInt(e2.getText().toString());
+        }
+
+        return true;
+    }
+    // a public method to perform addition
+    public void doSum(View v)
+    {
+        // get the input numbers
+        if (getNumbers()) {
+            int sum = num1 + num2;
+            res.setText(Integer.toString(sum));
+        }
+    }
+
+    // a public method to perform subtraction
+    public void doSub(View v)
+    {
+        // get the input numbers
+        if (getNumbers()) {
+            int sum = num1 - num2;
+            res.setText(Integer.toString(sum));
+        }
+    }
+    // a public method to perform multiplication
+    public void doMul(View v)
+    {
+        // get the input numbers
+        if (getNumbers()) {
+            int sum = num1 * num2;
+            res.setText(Integer.toString(sum));
+        }
+    }
+    // a public method to perform Division
+    public void doDiv(View v)
+    {
+        // get the input numbers
+        if (getNumbers()) {
+            // displaying the text in text view assigned as t1
+            double sum = num1 / (num2 * 1.0);
+            res.setText(Double.toString(sum));
+        }
+    }
+    // a public method to perform modulus function
+    public void doMod(View v)
+    {
+        // get the input numbers
+        if (getNumbers()) {
+            double sum = num1 % num2;
+            res.setText(Double.toString(sum));
+        }
+    }
+}
+
+
+XML:
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="doSub"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="217dp"
+        android:layout_height="69dp"
+        android:layout_x="96dp"
+        android:layout_y="89dp"
+        android:text="Calculator!"
+        android:textAlignment="center"
+        android:textSize="36sp" />
+
+    <EditText
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="36dp"
+        android:layout_y="191dp"
+        android:ems="10"
+        android:hint="Number 1"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="31dp"
+        android:layout_y="256dp"
+        android:ems="10"
+        android:hint="Number 2"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="194dp"
+        android:layout_height="41dp"
+        android:layout_x="35dp"
+        android:layout_y="324dp"
+        android:text="Result" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="12dp"
+        android:layout_y="379dp"
+        android:onClick="doSum"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="107dp"
+        android:layout_y="379dp"
+        android:onClick="doSub"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/mul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="201dp"
+        android:layout_y="378dp"
+        android:onClick="doMul"
+        android:text="*" />
+
+    <Button
+        android:id="@+id/div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="296dp"
+        android:layout_y="381dp"
+        android:onClick="doDiv"
+        android:text="/" />
+
+    <Button
+        android:id="@+id/mod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="151dp"
+        android:layout_y="427dp"
+        android:onClick="doMod"
+        android:text="%" />
+</AbsoluteLayout>
